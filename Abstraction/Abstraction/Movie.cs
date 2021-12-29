@@ -1,16 +1,11 @@
 ﻿namespace Abstraction
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     internal sealed class Movie : Video, IPlayable, IViewable, IListenable, IReadable
     {
         private readonly Subtitle _subtitle;
 
         public Movie(string title) : base(title)
         {
-
         }
 
         public Movie(string title, Subtitle subtitle) : base(title)

@@ -1,14 +1,14 @@
 ﻿namespace Abstraction
 {
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     internal sealed class ContentLibrary
     {
-        System.Collections.ObjectModel.ObservableCollection<Content> contents;
+        ObservableCollection<Content> contents;
 
         public ContentLibrary()
         {
-            contents = new System.Collections.ObjectModel.ObservableCollection<Content>();
+            contents = new ObservableCollection<Content>();
         }
 
         public void Add(Content content)
@@ -16,6 +16,6 @@
             contents.Add(content);
         }
 
-        public System.Collections.ObjectModel.ObservableCollection<Content> Contents => contents; 
+        public ObservableCollection<Content> Contents => contents; 
     }
 }

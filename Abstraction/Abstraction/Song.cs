@@ -1,10 +1,8 @@
 ﻿namespace Abstraction
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
 
-    internal sealed class Song : Content, IPlayable, IListenable
+    internal sealed class Song : Audio, IPlayable, IListenable
     {
         private TimeSpan playTime;
         public Song(string title):base(title)

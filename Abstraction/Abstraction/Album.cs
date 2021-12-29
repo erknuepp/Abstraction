@@ -3,7 +3,7 @@
 
     using System.Collections.Generic;
 
-    internal class Album : Content, IPlayable, IListenable
+    internal class Album : Audio, IPlayable, IListenable
     {
         readonly ICollection<Song> _songs;
         public Album(string title) : base(title)
@@ -29,7 +29,7 @@
         /// <summary>
         /// Polymorphic implementation of Content GetTitle() that trims whitespace.
         /// </summary>
-        /// <returns>String: The Album Title.</returns>
+        /// <returns>String: The Album Title with whitespace trimmed.</returns>
         public override string GetTitle()
         {
             return base.GetTitle().Trim();

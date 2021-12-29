@@ -1,14 +1,9 @@
 ﻿namespace Abstraction
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
-    internal class AudioBook : Content, IPlayable, IListenable
+    internal class AudioBook : Audio, IPlayable, IListenable
     {
         public AudioBook(string title): base(title)
         {
-
         }
 
         public string Listen()
