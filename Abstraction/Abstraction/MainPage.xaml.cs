@@ -2,16 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     using Xamarin.Forms;
 
     public partial class MainPage : ContentPage
     {
         ContentLibrary contentLibrary;
+
         public MainPage()
         {
             InitializeComponent();
@@ -35,19 +32,20 @@
 
             switch (contentType)
             {
-                case ("Book"):
+                case "Book":
                     contentLibrary.Contents.Add(new Book(title));
                     break;
-                case ("AudioBook"):
+                case "AudioBook":
                     contentLibrary.Contents.Add(new AudioBook(title));
                     break;
-                case ("Movie"):
+                case "Movie":
                     contentLibrary.Contents.Add(new Movie(title));
+                    contentLibrary.Contents.Add(new Movie(title + " w/ Subtitles", new Subtitle(new Dictionary<string, string> { { "SceneOne", "In a world" } })));
                     break;
-                case ("Album"):
+                case "Album":
                     contentLibrary.Contents.Add(new Album(title));
                     break;
-                case ("Song"):
+                case "Song":
                     contentLibrary.Contents.Add(new Song(title));
                     break;
                 default:
@@ -63,21 +61,25 @@
             var selectedContentItem = contentLibraryListView.SelectedItem;
             if (selectedContentItem != null)
             {
-                if(selectedContentItem is Movie movie)
+                if (selectedContentItem is Movie movie)
                 {
                     stateMessage.Text = movie.Play();
                 }
-                if (selectedContentItem is Song song)
+                else if (selectedContentItem is Song song)
                 {
                     stateMessage.Text = song.Play();
                 }
-                if (selectedContentItem is AudioBook audioBook)
+                else if (selectedContentItem is AudioBook audioBook)
                 {
                     stateMessage.Text = audioBook.Play();
                 }
-                if (selectedContentItem is Album album)
+                else if (selectedContentItem is Album album)
                 {
                     stateMessage.Text = album.Play();
+                }
+                else
+                {
+                    stateMessage.Text = $"This action is not supported for {selectedContentItem.GetType().Name} Content Type.";
                 }
             }
         }
@@ -91,6 +93,10 @@
                 {
                     stateMessage.Text = book.Read();
                 }
+                else if (selectedContentItem is Movie movie)
+                {
+                    stateMessage.Text = movie.Read();
+                }
             }
         }
 
@@ -102,7 +108,7 @@
                 if (selectedContentItem is Movie movie)
                 {
                     stateMessage.Text = movie.View();
-                }                
+                }
             }
         }
 

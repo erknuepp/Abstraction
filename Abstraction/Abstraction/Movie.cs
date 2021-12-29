@@ -4,26 +4,48 @@
     using System.Collections.Generic;
     using System.Text;
 
-    internal sealed class Movie : Video, IPlayable, IViewable, IListenable
+    internal sealed class Movie : Video, IPlayable, IViewable, IListenable, IReadable
     {
-        public Movie(string title):base(title)
+        private readonly Subtitle _subtitle;
+
+        public Movie(string title) : base(title)
         {
 
+        }
+
+        public Movie(string title, Subtitle subtitle) : base(title)
+        {
+            _subtitle = subtitle;
         }
 
         public string Listen()
         {
-            return($"The movie {base.GetTitle()} is being listened to.");
+            return $"The movie {GetTitle()} is being listened to.";
         }
 
         public string Play()
         {
-            return($"The movie {base.GetTitle()} is being played.");
+            return $"The movie {GetTitle()} is being played.";
         }
 
         public string View()
         {
-            return($"The movie {base.GetTitle()} is being viewed.");
+            return $"The movie {GetTitle()} is being viewed.";
+        }
+
+        public bool HasSubtitles => _subtitle != null;
+
+
+        public string Read()
+        {
+            if (HasSubtitles)
+            {
+                return $"The movie {GetTitle()} has subtitles on.";
+            }
+            else
+            {
+                return $"The movie {GetTitle()} does not have subtitles.";
+            }
         }
     }
 }
